@@ -4,17 +4,12 @@ function createSlider(sliderId, sliderInputId) {
     noUiSlider.create(slider, {
         start: sliderInput.value,
         connect: true,
-        step: 2,
+        step: 30,
         range: {
-            'min': 2,
-            'max': 12
+            'min': 0,
+            'max': 180
         },
-        tooltips: true,
-        pips: {
-            mode: 'steps',
-            stepped: true,
-            density: 4
-        }
+        tooltips: true
     });
 
     slider.noUiSlider.on('update', function (values, handle) {    
