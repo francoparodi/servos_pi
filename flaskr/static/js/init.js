@@ -4,7 +4,7 @@ function createSlider(sliderId, sliderInputId) {
     noUiSlider.create(slider, {
         start: sliderInput.value,
         connect: true,
-        step: 30,
+        step: 36,
         range: {
             'min': 0,
             'max': 180

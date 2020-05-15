@@ -3,7 +3,7 @@ from flask import current_app as app
 from flask import Blueprint, render_template, request
 
 try:
-    import RPi.GPIO
+    import RPi.GPIO as GPIO
 except (RuntimeError, ModuleNotFoundError):
     import fake_rpi
     GPIO = fake_rpi.RPi.GPIO
@@ -21,7 +21,7 @@ servo = GPIO.PWM(11,50)
 servo.start(0)
 time.sleep(2)
 
-values = {'0.00':2, '30.00':4, '60.00':6, '90.00':8, '120.00':10, '180.00':12}
+values = {'0.00':2, '36.00':4, '72.00':6, '108.00':8, '144.00':10, '180.00':12}
 
 @view.route("/")
 def homepage():
@@ -37,6 +37,8 @@ def update():
 
 def cleanUp():
     print('Safe terminating.')
+    servo.ChangeDutyCycle(0)
+    time.sleep(2)
     GPIO.cleanup()
 
 atexit.register(cleanUp)
