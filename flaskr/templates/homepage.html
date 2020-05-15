@@ -4,66 +4,23 @@
 
 {% block content %}
 
-<div class="container content-container">
+  <div class="container content-container">
+    <form method="POST" action="/update">
+        <div class="form-group">
 
-  <div class="row">
+            <div>
+                <input id="sliderInput" type="hidden" name="sliderInput" value="{{ sliderValue }}">                    
+                <div id="slider"></div>
+                <script>
+                    createSlider('slider', 'sliderInput');
+                </script>
+            </div>
 
-    <div class="col">
-      <div class="row">
-        <div class="col img-data-col">
-          <img src="{{ url_for('static', filename='img/temperature.svg') }}" class="imgTemperature">
         </div>
-        <div class="col">
-          <p class="units-data-temperature">{{ settings.temperatureUm }}</p>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col">
-          <p class="temperature" id="temperature"></p>
-        </div>
-      </div>
-    </div>
 
-    <div class="col">
-      <div class="row">
-        <div class="col img-data-col">
-          <img src="{{ url_for('static', filename='img/humidity.svg') }}" class="imgHumidity">
-        </div>
-        <div class="col">
-          <p class="units-data-humidity">{{ settings.humidityUm }}</p>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col">
-          <p class="humidity" id="humidity"></p>
-        </div>
-      </div>
-    </div>
+        <button type="submit" class="btn btn-primary">Update</button>
 
-    <div class="col">
-      <div class="row">
-        <div class="col img-data-col">
-          <img src="{{ url_for('static', filename='img/pressure.svg') }}" class="imgPressure">
-        </div>
-        <div class="col">
-          <p class="units-data-pressure">{{ settings.pressureUm }}</p>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col">
-          <p class="pressure" id="pressure"></p>
-        </div>
-      </div>
-    </div>
-
+    </form>
   </div>
-          
-</div>
-
-<div class="container content-container">
-  <div class="mt-3" id="graphId">
-
-  </div>
-</div>
 
 {% endblock %}

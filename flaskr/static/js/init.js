@@ -1,32 +1,23 @@
-function initOnLoad() {
-    showDigitalClock(); 
-    socketIOinit(); 
-    plotlyInit();
-}
-
-function showDigitalClock() {
-    var date =  new Date().toLocaleString();
-    document.getElementById("digitalClock").innerHTML = date;
-    setTimeout(showDigitalClock, 1000);
-}
-
-function createSlider(id, idInput) {
-    var slider1 = document.getElementById(id);
-    var startValue = document.getElementById(idInput);
-    noUiSlider.create(slider1, {
-        start: startValue.value,
+function createSlider(sliderId, sliderInputId) {
+    var slider = document.getElementById(sliderId);
+    var sliderInput = document.getElementById(sliderInputId);
+    noUiSlider.create(slider, {
+        start: sliderInput.value,
         connect: true,
-        step: 1,
+        step: 2,
         range: {
-            'min': 0,
-            'max': 1800
+            'min': 2,
+            'max': 12
+        },
+        tooltips: true,
+        pips: {
+            mode: 'steps',
+            stepped: true,
+            density: 4
         }
     });
 
-    slider1.noUiSlider.on('update', function (values, handle) {    
-        var inputValue = document.getElementById('readFromSensorIntervalSliderValue');
-        inputValue.value = values[handle];
-        var labelValue = document.getElementById('sensorIntervalSliderLabel');
-        labelValue.innerHTML = "Read from sensor every " + inputValue.value + "s."
+    slider.noUiSlider.on('update', function (values, handle) {    
+        sliderInput.value = values[handle];
     });
 }
