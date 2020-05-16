@@ -27,18 +27,22 @@ values = {'0.00':2, '36.00':4, '72.00':6, '108.00':8, '144.00':10, '180.00':12}
 def homepage():
     return render_template("homepage.html")
 
-@view.route("/update", methods=["POST"])
+@view.route("/", methods=["POST"])
 def update():
     sliderValue = request.form.get('sliderInput')
     dutyCycle = values[sliderValue]
-    print('Slider value: {0}'.format(dutyCycle))
-    servo.ChangeDutyCycle(dutyCycle)
+    move(dutyCycle)
     return render_template("homepage.html", sliderValue = sliderValue)
+
+def move(dutyCycle=2):
+    servo.ChangeDutyCycle(dutyCycle)
+    time.sleep(1)
+    servo.ChangeDutyCycle(0)
+    time.sleep(0.5)
 
 def cleanUp():
     print('Safe terminating.')
-    servo.ChangeDutyCycle(0)
-    time.sleep(2)
+    move()
     GPIO.cleanup()
 
 atexit.register(cleanUp)

@@ -1,6 +1,6 @@
 # Servos_pi
-Simple flask webapp running on [Raspberry Pi](https://www.raspberrypi.org/) to show
-a sample of how to use a slider to control a servo motor (Micro Servo SG90)
+Sample flask webapp running on [Raspberry Pi](https://www.raspberrypi.org/) to show
+a way to use a slider to control a servo motor (Micro Servo SG90)
 
 ## Getting Started
 
