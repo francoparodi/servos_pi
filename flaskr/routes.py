@@ -1,6 +1,6 @@
 import sys, atexit, time
 from flask import current_app as app
-from flask import Blueprint, render_template, request
+from flask import Blueprint, render_template, request, redirect, url_for
 
 try:
     import RPi.GPIO as GPIO
@@ -21,7 +21,7 @@ servo = GPIO.PWM(11,50)
 servo.start(0)
 time.sleep(2)
 
-values = {'45.00':3, '90.00':6, '135.00':9, '180.00':12}
+values = {'0.00':0, '45.00':3, '90.00':6, '135.00':9, '180.00':12}
 
 @view.route("/")
 def homepage():
