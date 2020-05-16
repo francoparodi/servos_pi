@@ -21,7 +21,7 @@ servo = GPIO.PWM(11,50)
 servo.start(0)
 time.sleep(2)
 
-values = {'0.00':2, '36.00':4, '72.00':6, '108.00':8, '144.00':10, '180.00':12}
+values = {'45.00':3, '90.00':6, '135.00':9, '180.00':12}
 
 @view.route("/")
 def homepage():
@@ -34,15 +34,16 @@ def update():
     move(dutyCycle)
     return render_template("homepage.html", sliderValue = sliderValue)
 
-def move(dutyCycle=2):
+def move(dutyCycle=3):
     servo.ChangeDutyCycle(dutyCycle)
     time.sleep(1)
     servo.ChangeDutyCycle(0)
-    time.sleep(0.5)
+    time.sleep(1)
 
 def cleanUp():
     print('Safe terminating.')
     move()
+    servo.stop
     GPIO.cleanup()
 
 atexit.register(cleanUp)
