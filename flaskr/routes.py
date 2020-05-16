@@ -27,7 +27,7 @@ values = {'45.00':3, '90.00':6, '135.00':9, '180.00':12}
 def homepage():
     return render_template("homepage.html")
 
-@view.route("/", methods=["POST"])
+@view.route("/update", methods=["POST"])
 def update():
     sliderValue = request.form.get('sliderInput')
     dutyCycle = values[sliderValue]
