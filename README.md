@@ -7,6 +7,8 @@ a way to use a slider to control a servo motor (Micro Servo SG90)
 ### Prerequisites
 Micro Servo SG90 connected to Raspberry Pi
 
+![Schema](docs/servos_pi_schema.png)
+
 ### Installing
 
 From project root create virtual environment, activate it and install requirements:
